@@ -1,5 +1,5 @@
 import React from 'react'
-import Context from '../src/context'
+import Context from '../context'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {

@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Single Cart Item Component renders single cart item correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="rounded-lg border p-5"
+    data-testid="singleCartItem"
+  >
+    <div
+      class="flex items-center gap-4 sm:gap-8"
+    >
+      <img
+        alt="item-image"
+        class="w-[30%]"
+        data-nimg="1"
+        decoding="async"
+        loading="lazy"
+        src=""
+        style="color: transparent;"
+      />
+      <div>
+        <div
+          class="text-[#27abce] mt-2 font-semibold"
+        />
+        <div
+          class="font-semibold text-sm my-2"
+        >
+          Quantity: 
+        </div>
+        <div
+          class="font-semibold text-sm my-2"
+        >
+          Unit Price: £NaN
+        </div>
+        <div
+          class="font-semibold text-sm my-2"
+        >
+          Total Cost: £NaN
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-4 flex gap-2"
+    >
+      <button
+        class="w-full py-2 font-semibold border-none rounded-md text-sm bg-[#f52421] hover:bg-[#ef3b39] text-white px-4 py-1 w-fit "
+        data-testid="increaseCartItem"
+      >
+        Inc +
+      </button>
+      <button
+        class="w-full py-2 font-semibold border-none rounded-md text-sm bg-[#f52421] hover:bg-[#ef3b39] text-white px-4 py-1 w-fit "
+        data-testid="decreaseCartItem"
+      >
+        Dec -
+      </button>
+      <button
+        class="w-full py-2 font-semibold border-none rounded-md text-sm bg-[#f52421] hover:bg-[#ef3b39] text-white px-4 py-1 w-fit "
+        data-testid="removeCartItem"
+      >
+        Remove x
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

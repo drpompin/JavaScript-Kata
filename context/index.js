@@ -1,12 +1,10 @@
 import React, { createContext, useState } from 'react';
 
-export const KataContext = createContext(null);
-
+export const KataContext = createContext("");
 
 
 export default function Context({ children }) {
     const [kataState, setKataState] = useState([]);
-
 
     const handleAddToCart = (item) => {
         let ItemExistsInCart = kataState.length && kataState.find(product => product.name === item.name);
@@ -47,11 +45,52 @@ export default function Context({ children }) {
         }
     }
 
+    const handleDecreaseItem = (item) => {
+        let itemToBeDecreased = kataState.find(product => product.name === item.name);
+        if (itemToBeDecreased.qty > 0) {
+            itemToBeDecreased.qty -= 1;
+        }
+
+        if (!itemToBeDecreased.specialPrice) {
+            itemToBeDecreased.total = itemToBeDecreased.qty * itemToBeDecreased.unitPrice;
+        } else {
+            if (itemToBeDecreased.qty < +(itemToBeDecreased.specialPrice.split(" ")[0])) {
+                itemToBeDecreased.total = itemToBeDecreased.qty * itemToBeDecreased.unitPrice;
+            }
+
+            if (itemToBeDecreased.qty >= +(itemToBeDecreased.specialPrice.split(" ")[0])) {
+                let DiscountableQty = Math.trunc(itemToBeDecreased.qty / +(itemToBeDecreased.specialPrice.split(" ")[0]));
+                let discountedAmount = DiscountableQty * +(itemToBeDecreased.specialPrice.split(" ")[2]);
+
+                let remainderQty = itemToBeDecreased.qty % +(itemToBeDecreased.specialPrice.split(" ")[0]);
+                let remainderAmount = remainderQty * itemToBeDecreased.unitPrice;
+                
+                itemToBeDecreased.total = (discountedAmount + remainderAmount);
+            }
+        }
+
+        setKataState ([
+            ...kataState
+        ]);
+    }
+
+    const handleRemoveItem = (item) => {
+        let remainingItems = kataState.filter(product => product.name !== item.name);        
+        setKataState (remainingItems);
+    }
+
+    const clearCart = () => {
+        setKataState ([]);
+    }
+
     return (
         <KataContext.Provider value={{ 
             kataState, 
             setKataState, 
-            handleAddToCart 
+            handleAddToCart,
+            handleDecreaseItem,
+            handleRemoveItem,
+            clearCart
         }}>
             {children}
         </KataContext.Provider>
